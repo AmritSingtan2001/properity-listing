@@ -1,0 +1,15 @@
+.igrowl-title, .igrowl-message {
+    font-size: 14px;
+}
+
+.igrowl-message {
+    line-height: 18px;
+}
+
+.i-times:before {
+    content: "\e600";
+    font-size: 20px !important;
+}
+.igrowl{
+    z-index: 99999;
+}

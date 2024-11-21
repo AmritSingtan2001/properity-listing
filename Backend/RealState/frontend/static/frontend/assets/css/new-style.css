@@ -1,0 +1,28 @@
+.property-banner .property-img {
+    height:500px;
+    width:100%;
+    overflow:hidden;
+}
+.property-banner .property-img img {
+    height:100%;
+    width:100%;
+    object-fit:cover;
+}
+
+#property-look-carousel .carousel-control-next, #property-look-carousel .carousel-control-prev {
+    height: 50px;
+    width: 50px;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
+#property-look-carousel .carousel-item {
+    height:500px;
+    width:100%;
+    overflow:hidden;
+}
+#property-look-carousel .carousel-item img {
+    height:100%;
+    width:100%;
+    object-fit:cover;
+}

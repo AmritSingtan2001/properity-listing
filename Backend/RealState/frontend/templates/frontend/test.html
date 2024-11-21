@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realtor - Find Your Place</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/download/hero-bg.jpg') center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 0.8rem 2rem;
+            font-weight: 500;
+        }
+
+        .btn-secondary {
+            background-color: #ff7a3d;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #ff6a2d;
+        }
+
+        .search-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top mt-4">
+        <div class="container-fluid mx-3">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="" alt="Realtor Logo" class="me-2" style="height: 40px; width: 40px;">
+                <span>Realtor</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto pe-4">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#properties">Properties</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pages">Pages</a></li>
+                    <li class="nav-item"><a class="btn btn-secondary nav-link" href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <p class="text-uppercase text-white mb-3">Welcome to Realtor</p>
+            <h1 class="hero-title">Our Commitment is that You Find Your Place.</h1>
+            <p class="hero-description">Lorem ipsum dolor sit amet consectetur. Accumsan lacus neque nunc convallis eleifend vitae et felis potenti. Sit posuere tempus magna donec vitae gravida suspendisse.</p>
+            <div class="d-flex justify-content-center gap-3 mb-5">
+                <a href="#properties" class="btn btn-light btn-primary">View Properties</a>
+                <a href="#contact" class="btn btn-secondary">Contact Us</a>
+            </div>
+
+            <!-- Search Form -->
+            <div class="search-container mx-auto">
+                <div class="row g-3">
+                    <div class="col-md-2">
+                        <select class="form-select">
+                            <option selected>Property Type</option>
+                            <option value="1">House</option>
+                            <option value="2">Apartment</option>
+                            <option value="3">Condo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select">
+                            <option selected>Sell or Rent</option>
+                            <option value="1">Sell</option>
+                            <option value="2">Rent</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select">
+                            <option selected>Budget</option>
+                            <option value="1">$0 - $100,000</option>
+                            <option value="2">$100,000 - $200,000</option>
+                            <option value="3">$200,000+</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select">
+                            <option selected>Location</option>
+                            <option value="1">New York</option>
+                            <option value="2">Los Angeles</option>
+                            <option value="3">Chicago</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select">
+                            <option selected>Amenities</option>
+                            <option value="1">Pool</option>
+                            <option value="2">Garage</option>
+                            <option value="3">Garden</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary w-100">
+                            <i class="fas fa-search me-2"></i>Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
