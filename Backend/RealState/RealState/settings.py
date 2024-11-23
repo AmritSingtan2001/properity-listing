@@ -33,7 +33,8 @@ ALLOWED_HOSTS = []
 LOCAL_APP= [
     'frontend',
     'account',
-    'properties'
+    'properties',
+    'about'
 ]
 
 INSTALLED_APPS = [

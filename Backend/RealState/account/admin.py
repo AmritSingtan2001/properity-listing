@@ -22,8 +22,4 @@ class UserModelAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ('email', 'id')
 
-   
-
-    
-
 admin.site.register(User, UserModelAdmin)
