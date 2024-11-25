@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
 
 class AutoSlugField(models.SlugField):
     """
@@ -27,10 +28,63 @@ class Category(models.Model):
     
     class Meta:
         verbose_name = _("Category")
-        verbose_name_plural = _("Categorys")
+        verbose_name_plural = _("Categories")
 
     def __str__(self):
         return self.category_name
 
     def get_absolute_url(self):
         return reverse("Category_detail", kwargs={"pk": self.pk})
+        
+
+RENT = 'Rent'
+BUY = 'Buy'
+STATUS_CHOICES = [
+    (RENT, _('Rent')),
+    (BUY, _('Buy')),
+]
+
+class Property(models.Model):
+    title = models.CharField(_("Enter property title"), max_length=150)
+    category = models.ForeignKey('Category', verbose_name=_("Choose Category"), on_delete=models.DO_NOTHING)
+    address = models.CharField(_("Enter Address"), max_length=50)
+    old_price = models.DecimalField(_("Enter old price"), null=True, blank=True, decimal_places=2, max_digits=20)
+    new_price = models.DecimalField(_("Current price"), decimal_places=2, max_digits=20)
+    description = RichTextField(_("Enter Descriptions"))
+    yt_link = models.URLField(_("Youtube link"),null=True, blank=True, max_length=200)
+    per_aana_price = models.DecimalField(_("Per aana price"), null=True, blank=True, decimal_places=2, max_digits=20)
+    plot_size = models.CharField(_("Plot size"),null=True, blank=True, max_length=50)
+    total_aana = models.CharField(_("Total aana"),null=True, blank=True, max_length=50)
+    google_map_url = models.URLField(_("Enter Google map url"),null=True, blank=True, max_length=200)
+    status = models.CharField(
+        _("Choose Property status"),
+        choices=STATUS_CHOICES,
+        default=BUY,
+        max_length=50
+    )
+    slug = AutoSlugField(unique=True, blank=True, editable=False, source_field='title')  
+    is_trending = models.BooleanField(_("Is Trending"), default=False)
+    is_featured = models.BooleanField(_("Is Featured"), default=False)
+
+    class Meta:
+        verbose_name = _("Property")
+        verbose_name_plural = _("Properties")
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("Property_detail", kwargs={"slug": self.slug})
+
+class PropertyImages(models.Model):
+    property = models.ForeignKey("Property", verbose_name=_("Choose Property"), on_delete=models.CASCADE)
+    image = models.ImageField(_("Choose Image"), upload_to='property/images', max_length=255) 
+    class Meta:
+        verbose_name = _("PropertiesImages")
+        verbose_name_plural = _("PropertiesImagess")
+
+    def __str__(self):
+        return self.property.title
+
+    def get_absolute_url(self):
+        return reverse("PropertyImages_detail", kwargs={"pk": self.pk})

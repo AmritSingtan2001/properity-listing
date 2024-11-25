@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
 ]+ LOCAL_APP
 
 MIDDLEWARE = [
@@ -139,3 +140,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #custom user model
 AUTH_USER_MODEL = 'account.User'
+
+#Ckeditor
+CKEDITOR_CONFIGS = {
+    'awesome_ckeditor': {
+        'toolbar': 'Basic',
+    },
+}
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    
+    }
+}
