@@ -1,0 +1,202 @@
+{% extends 'frontend/base.html' %}
+{% load static %} 
+{% block title %}
+Properties Details
+{% endblock  %}
+{% block body_content%}
+    <!-- main -->
+    <div class="property-banner" id="banner-gallery">
+        <div class="row no-gutters">
+            <div class="col-lg-7 pr-2">
+                <div class="property-img">
+                    <a href="{{property_detail.property_images.first.image.url}}" class="d-block mb-4 h-100"
+                        data-fancybox="gallery" data-caption="{{property_detail.title}}">
+                        <img src="{{property_detail.property_images.first.image.url}}" class="img-fluid"
+                            onerror="this.onerror=null;this.src='{{property_detail.property_images.first.image.url}}'" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div id="property-look-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for property_image in property_detail.property_images.all %}
+                        <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                            <a href="{{property_image.image.url}}" class="d-block mb-4 h-100"
+                                data-fancybox="gallery" data-caption="{{property_detail.title}}">
+                                <img src="{% if property_image.image %}{{ property_image.image.url }} {% else %} {% static 'frontend/assets/images/default-image.svg' %} {% endif %}" class="d-block w-100"
+                                    alt="No image found {{property_detail.title}}" />
+                            </a>
+                        </div>
+                        {% endfor %}
+                       
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-target="#property-look-carousel"
+                        data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-target="#property-look-carousel"
+                        data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="property_details" class="property-details section-padding">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 col-12">
+                    <div class="banner-overlay new-part">
+                        <div class="banner-content details-content text-left">
+                            <div class="banner-title">
+                                <h1>
+                                   {{property_detail.title}}
+                                    <span class="like"><i class="far fa-heart"></i></span>
+                                </h1>
+                            </div>
+                            <div class="banner-sub-title">
+                                <h4>Rs {{property_detail.per_aana_price }}</h4>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="right-sidebar">
+                        <div class="sidebar-title">
+                            <h4>Property Overview</h4>
+                            <div>
+                                <form wire:submit.prevent="request">
+                                    <input type="hidden" name="" value="">
+                                    <input type="hidden" name="property" value="">
+                                    <button type="submit" class="btn btn-info">Send Buy Request</button></a>
+                                </form>
+                            </div>
+
+                            <div class="post-share-link">
+                                <h4>Share</h4>
+
+                                <div class="addthis_inline_share_toolbox_7ecg" data-url="1157.html"
+                                    data-title="{{property_detail.title}}"
+                                    data-image="https://gharsansarnepal.com/image/1731657231Sitapaila, Sankata.png">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                       
+                        <div>
+                            {{property_detail.description|safe}}
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="categories-body bg-light p-md-4 p-3 rounded">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="sidebar-title">
+                                    <h4>Property Full Details</h4>
+                                </div>
+                                <hr>
+                                <span class="categories-title">Contact Infomation</span>
+                                <div class="contact-list">
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="fas fa-user"></i>
+                                                Gharsansar
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="tel:015134574/9841057532">
+                                                <i class="fas fa-mobile-alt"></i>
+                                                015134574/9841057532
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+
+
+                                <span class="categories-title">Property details</span>
+                                <div class="contact-list">
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="fas fa-check-circle"></i> Posted on :
+                                                1 day ago</a>
+                                        </li>
+
+
+
+                                        <li>
+                                            <a href="#"><i class="fas fa-check-circle"></i> Road Size :
+                                                13 Feets</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#"><i class="fas fa-check-circle"></i> Road Type :
+                                                Gravel</a>
+                                        </li>
+
+
+
+                                        <li>
+                                            <a href="#"><i class="fas fa-map-signs"></i> land area :
+                                                4 Anna</a>
+                                        </li>
+
+
+
+
+
+
+
+
+
+                                        <li>
+                                            <a href="#"><i class="fas fa-arrow-up"></i> Property Face Direction :
+                                                SOUTH</a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                                <span class="categories-title">Property Video</span>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/2G_HfHNCTEI"
+                                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="map-house">
+                        <div class="col-12">
+                            <div class="section-title">
+                                <h4>Property location map</h4>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="map-field">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.3957447708085!2d85.28861565600826!3d27.714683959025894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19c15e0c5bfd%3A0x29d66d4566870ca2!2sNirvana%20Academy!5e1!3m2!1sen!2snp!4v1731657137471!5m2!1sen!2snp"
+                                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- end main -->
+{% endblock %}
+

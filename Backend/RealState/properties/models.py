@@ -77,7 +77,7 @@ class Property(models.Model):
         return reverse("Property_detail", kwargs={"slug": self.slug})
 
 class PropertyImages(models.Model):
-    property = models.ForeignKey("Property", verbose_name=_("Choose Property"), on_delete=models.CASCADE)
+    property = models.ForeignKey("Property", verbose_name=_("Choose Property"), related_name='property_images' ,on_delete=models.CASCADE)
     image = models.ImageField(_("Choose Image"), upload_to='property/images', max_length=255) 
     class Meta:
         verbose_name = _("PropertiesImages")

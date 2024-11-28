@@ -1,8 +1,9 @@
 from django.urls import path
 from . import views
-
-app_name ='app'
+from .views import Index,PropertyDetail
+app_name ='frontend'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('',Index.as_view(), name='index'),
+    path('property/detail/<slug:slug>', PropertyDetail.as_view(), name='property_detail'),
 ]
