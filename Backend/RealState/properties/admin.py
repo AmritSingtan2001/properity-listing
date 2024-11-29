@@ -11,8 +11,8 @@ class PropertiesImagesInline(admin.TabularInline):
     fields = ('image',) 
 
 class PropertyAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'address', 'old_price', 'new_price', 'is_trending', 'is_featured', 'status','slug')
-    list_filter = ('status', 'is_trending', 'is_featured')
+    list_display = ('title', 'category', 'address', 'old_price', 'new_price', 'is_highlight', 'is_featured', 'status','slug')
+    list_filter = ('status', 'is_highlight', 'is_featured')
     search_fields = ('title', 'address', 'description')
     inlines = [PropertiesImagesInline]  
 admin.site.register(Property, PropertyAdmin)

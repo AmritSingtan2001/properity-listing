@@ -132,39 +132,31 @@ Properties Details
 
                                         <li>
                                             <a href="#"><i class="fas fa-check-circle"></i> Road Size :
-                                                13 Feets</a>
+                                                {{property_detail.road_size}}</a>
                                         </li>
 
                                         <li>
                                             <a href="#"><i class="fas fa-check-circle"></i> Road Type :
-                                                Gravel</a>
+                                                {{property_detail.road_type}}</a>
                                         </li>
 
 
 
                                         <li>
                                             <a href="#"><i class="fas fa-map-signs"></i> land area :
-                                                4 Anna</a>
+                                                {{property_detail.land_area}}</a>
                                         </li>
-
-
-
-
-
-
-
-
 
                                         <li>
                                             <a href="#"><i class="fas fa-arrow-up"></i> Property Face Direction :
-                                                SOUTH</a>
+                                                {{property_detail.property_face_direction}}</a>
                                         </li>
 
 
                                     </ul>
                                 </div>
                                 <span class="categories-title">Property Video</span>
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/2G_HfHNCTEI"
+                                <iframe width="560" height="315" src="{{property_detail.yt_link}}"
                                     title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                                 </iframe>
@@ -185,7 +177,7 @@ Properties Details
                         <div class="col-12">
                             <div class="map-field">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.3957447708085!2d85.28861565600826!3d27.714683959025894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19c15e0c5bfd%3A0x29d66d4566870ca2!2sNirvana%20Academy!5e1!3m2!1sen!2snp!4v1731657137471!5m2!1sen!2snp"
+                                    src="{{property_detail.google_map_url}}"
                                     width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                                     referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>

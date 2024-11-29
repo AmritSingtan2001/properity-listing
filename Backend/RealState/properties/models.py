@@ -44,6 +44,19 @@ STATUS_CHOICES = [
     (BUY, _('Buy')),
 ]
 
+
+SOUTH = 'South'
+EAST = 'East'
+WEST = 'West'
+NORTH = 'North'
+
+DIRECTION_CHOICES = [
+    (SOUTH, _('South')),
+    (EAST, _('East')),
+    (WEST, _('West')),
+    (NORTH, _('North')),
+]
+
 class Property(models.Model):
     title = models.CharField(_("Enter property title"), max_length=150)
     category = models.ForeignKey('Category', verbose_name=_("Choose Category"), on_delete=models.DO_NOTHING)
@@ -54,7 +67,11 @@ class Property(models.Model):
     yt_link = models.URLField(_("Youtube link"),null=True, blank=True, max_length=200)
     per_aana_price = models.DecimalField(_("Per aana price"), null=True, blank=True, decimal_places=2, max_digits=20)
     plot_size = models.CharField(_("Plot size"),null=True, blank=True, max_length=50)
-    total_aana = models.CharField(_("Total aana"),null=True, blank=True, max_length=50)
+    total_aana = models.CharField(_("Total aana"), max_length=150, null=True, blank=True)
+    road_size = models.CharField(_("Road size"), max_length=150, null=True, blank=True)
+    road_type = models.CharField(_("Road Type"), max_length=150, null=True, blank=True)
+    land_area = models.CharField(_("Land Area"), max_length=150, null=True, blank=True)
+    property_face_direction = models.CharField(_("Choose Property Face Direction"), choices=DIRECTION_CHOICES,  max_length=150, null=True, blank=True)
     google_map_url = models.URLField(_("Enter Google map url"),null=True, blank=True, max_length=200)
     status = models.CharField(
         _("Choose Property status"),
@@ -63,9 +80,9 @@ class Property(models.Model):
         max_length=50
     )
     slug = AutoSlugField(unique=True, blank=True, editable=False, source_field='title')  
-    is_trending = models.BooleanField(_("Is Trending"), default=False)
+    is_highlight = models.BooleanField(_("Is Highlight"), default=False)
     is_featured = models.BooleanField(_("Is Featured"), default=False)
-
+    
     class Meta:
         verbose_name = _("Property")
         verbose_name_plural = _("Properties")

@@ -31,7 +31,7 @@ class Command(BaseCommand):
                 total_aana=fake.random_number(digits=3),
                 google_map_url=fake.url(),
                 status=random.choice(['Rent', 'Buy']),
-                is_trending=random.choice([True, False]),
+                is_highlight=random.choice([True, False]),
                 is_featured=random.choice([True, False])
             )
             self.stdout.write(self.style.SUCCESS(f'Successfully created property: {property.title}'))

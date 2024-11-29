@@ -164,22 +164,22 @@ Welcome To Home page
             <div class="owl-slider">
                 <div class="row">
                     <div id="carousel" class="owl-carousel property-slider">
-
+                        {% for property in highlighted_properties %}
                         <div class="col-md-12">
                             <div class="item">
                                 <div class="explore-item same-height"
-                                    onclick="location.href=https://gharsansarnepal.com/house-in-kathmandu/1144"
+                                    onclick=""
                                     style="height: 430px;">
                                     <div class="item-img sold-wrap">
-                                        <img src="https://thumb.photo-ac.com/42/4219f95a9f80c4970b1863a6f48028dc_t.jpeg"
-                                             alt="pic55"
+                                        <img src="{% if property.property_images.first.image %}{{ property.property_images.first.image.url }} {% else %} {% static 'frontend/assets/images/default-image.svg' %} {% endif %}"
+                                             alt="{{property.title}}"
                                              class="img-fluid"
-                                             onerror="this.onerror=null;this.src='./assets/images/default-image.svg'" />
+                                         />
                                     </div>
                                     <div class="explore-details">
                                         <div class="explore-item-title">
-                                            <a href="house-in-kathmandu/1144.html">
-                                                BUDHANILKANTHA | WHITE HOUSE
+                                            <a href="{% url 'frontend:property_detail' property.slug %}">
+                                                {{property.title}}
                                             </a>
                                         </div>
                                         <div class="item-details">
@@ -188,14 +188,19 @@ Welcome To Home page
                                                     <i class="fas fa-tags"></i>
                                                     price
                                                 </span>
-                                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR 80,000,000/-</ins>
+                                                <ins>
+                                                    <span class="pr-1">:</span>
+                                                    <span class="rs-price">Rs.</span>
+                                                    NPR {{property.new_price|default:"Not Available"|remove_decimal}}
+                                                </ins>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                       
+                        {% empty %}
                         <div class="col-md-12">
                             <div class="item">
                                 <div class="explore-item same-height"
@@ -226,6 +231,7 @@ Welcome To Home page
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
 
                         <!-- Repeat for the remaining items -->
 

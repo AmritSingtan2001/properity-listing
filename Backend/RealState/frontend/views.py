@@ -9,12 +9,13 @@ from properties.models import Category, Property, PropertyImages
 class Index(generic.ListView):
     model = Property
     queryset = Property.objects.all()
-    template_name ='frontend//'
+    template_name ='frontend/index.html'
     context_object_name ='properties'
 
     def get_context_data(self, **kwargs: Any) -> dict:
         context = super().get_context_data(**kwargs)
         context['available_properties'] = self.get_queryset()
+        context['highlighted_properties'] = self.get_queryset().filter(is_highlight=True)
         return context
 
 
