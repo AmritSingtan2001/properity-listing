@@ -3,6 +3,7 @@ import re
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
+from ckeditor.fields import RichTextField
 
 nepali_phone_regex = r"^(\+977|977|9)\d{8,9}$"
 
@@ -31,3 +32,17 @@ class setting(models.Model):
 
     def get_absolute_url(self):
         return reverse("setting_detail", kwargs={"pk": self.pk})
+
+
+class AboutUs(models.Model):
+    title = models.CharField(_("Enter Title"), max_length=150)
+    descriptions = RichTextField(_("Enter Descriptions"))
+    yt_video_url = models.URLField(_("Enter Youtube video URL"), null=True, blank=True)
+    image = models.ImageField(_("Select Image"),upload_to='AboutUs/', null=True, blank=True)
+
+    def clean(self):
+        super().clean()
+        if not self.yt_video_url and not self.image:
+            raise ValidationError(
+                _("You must provide at least one of 'Youtube video URL' or 'Image'.")
+            )
