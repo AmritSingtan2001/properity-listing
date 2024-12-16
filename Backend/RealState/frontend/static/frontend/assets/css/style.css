@@ -3015,3 +3015,63 @@ table {
     position: sticky;
     top: 100px;
 }
+
+
+
+/* for the agent */
+
+
+        .agent-section {
+            background-color: #f8f9fa;
+            padding: 60px 20px;
+        }
+
+        .agent-section h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00337c;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .agent-section p {
+            text-align: center;
+            color: #7a7a7a;
+            font-size: 16px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .agent-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .agent-card img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 15px;
+        }
+
+        .agent-card h5 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .agent-card span {
+            color: #7a7a7a;
+            font-size: 14px;
+        }

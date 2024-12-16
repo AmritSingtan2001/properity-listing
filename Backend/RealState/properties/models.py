@@ -60,7 +60,7 @@ DIRECTION_CHOICES = [
 class Property(models.Model):
     title = models.CharField(_("Enter property title"), max_length=150)
     category = models.ForeignKey('Category', verbose_name=_("Choose Category"), on_delete=models.DO_NOTHING)
-    address = models.CharField(_("Enter Address"), max_length=50)
+    address = models.CharField(_("Enter Address"), max_length=150)
     old_price = models.DecimalField(_("Enter old price"), null=True, blank=True, decimal_places=2, max_digits=20)
     new_price = models.DecimalField(_("Current price"), decimal_places=2, max_digits=20)
     description = RichTextField(_("Enter Descriptions"))
@@ -72,6 +72,7 @@ class Property(models.Model):
     road_type = models.CharField(_("Road Type"), max_length=150, null=True, blank=True)
     land_area = models.CharField(_("Land Area"), max_length=150, null=True, blank=True)
     property_face_direction = models.CharField(_("Choose Property Face Direction"), choices=DIRECTION_CHOICES,  max_length=150, null=True, blank=True)
+    parking_area = models.CharField(_("Parking Area"), max_length =150, null=True, blank=True)
     google_map_url = models.URLField(_("Enter Google map url"),null=True, blank=True, max_length=200)
     status = models.CharField(
         _("Choose Property status"),

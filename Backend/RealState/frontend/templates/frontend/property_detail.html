@@ -51,29 +51,64 @@ Properties Details
                 <div class="col-lg-8 col-12">
                     <div class="banner-overlay new-part">
                         <div class="banner-content details-content text-left">
-                            <div class="banner-title">
-                                <h1>
-                                   {{property_detail.title}}
-                                    <span class="like"><i class="far fa-heart"></i></span>
-                                </h1>
+                            <div class="banner-title d-flex justify-content-between">
+                                <div>
+                                    <h1>
+                                        {{property_detail.title}}
+                                        <span class="like"><i class="far fa-heart"></i></span>
+                                    </h1>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#buyRequestModal">
+                                    Send Buy Request
+                                </button>
+                                </div>
+                              
                             </div>
                             <div class="banner-sub-title">
                                 <h4>Rs {{property_detail.per_aana_price }}</h4>
                             </div>
 
                         </div>
+
+                       
                     </div>
                     <div class="right-sidebar">
                         <div class="sidebar-title">
-                            <h4>Property Overview</h4>
-                            <div>
-                                <form wire:submit.prevent="request">
-                                    <input type="hidden" name="" value="">
-                                    <input type="hidden" name="property" value="">
-                                    <button type="submit" class="btn btn-info">Send Buy Request</button></a>
-                                </form>
-                            </div>
 
+                             <!-- Modal Structure -->
+                             <div class="modal fade" id="buyRequestModal" tabindex="-1" role="dialog"
+                             aria-labelledby="buyRequestModalLabel" aria-hidden="true">
+                             <div class="modal-dialog" role="document">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <h5 class="modal-title" id="buyRequestModalLabel">Buy Request Form</h5>
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                             <span aria-hidden="true">&times;</span>
+                                         </button>
+                                     </div>
+                                     <div class="modal-body">
+                                         <!-- Form inside Modal -->
+                                         <form id="buyRequestForm">
+                                             <div class="mb-3">
+                                                 <label for="userName" class="form-label">Full Name</label>
+                                                 <input type="text" class="form-control" id="userName" required>
+                                             </div>
+                                             <div class="mb-3">
+                                                 <label for="userEmail" class="form-label">Email Address</label>
+                                                 <input type="email" class="form-control" id="userEmail" required>
+                                             </div>
+                                             <div class="mb-3">
+                                                 <label for="userContact" class="form-label">Contact Number</label>
+                                                 <input type="tel" class="form-control" id="userContact" required>
+                                             </div>
+                                             <button type="submit" class="btn btn-primary">Submit Request</button>
+                                         </form>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                           
                             <div class="post-share-link">
                                 <h4>Share</h4>
 
@@ -129,28 +164,33 @@ Properties Details
                                         </li>
 
 
-
+                                        {% if property_detail.road_size %}
                                         <li>
                                             <a href="#"><i class="fas fa-check-circle"></i> Road Size :
                                                 {{property_detail.road_size}}</a>
                                         </li>
-
+                                        {% endif %}
+                                        {% if property_detail.road_type%}
                                         <li>
                                             <a href="#"><i class="fas fa-check-circle"></i> Road Type :
                                                 {{property_detail.road_type}}</a>
                                         </li>
+                                        {% endif %}
 
 
-
+                                        {% if property_detail.land_area %}
                                         <li>
                                             <a href="#"><i class="fas fa-map-signs"></i> land area :
                                                 {{property_detail.land_area}}</a>
                                         </li>
+                                        {% endif%}
 
+                                        {% if property_detail.property_face_direction%}
                                         <li>
                                             <a href="#"><i class="fas fa-arrow-up"></i> Property Face Direction :
                                                 {{property_detail.property_face_direction}}</a>
                                         </li>
+                                        {% endif %}
 
 
                                     </ul>

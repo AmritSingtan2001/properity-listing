@@ -254,14 +254,13 @@ Welcome To Home page
             </div>
         </div>
         <div class="row">
-
+            {% for featured_property in featured_properties %}
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="explore-item featured-item same-height mb-4">
                     <div class="item-img sold-wrap">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/35/13/9b/old-town-of-panauti.jpg?w=700&h=-1&s=1"
-                             alt="pic4"
+                        <img src="{% if featured_property.property_images.first.image %}{{ featured_property.property_images.first.image.url }} {% else %} {% static 'frontend/assets/images/default-image.svg' %} {% endif %}"
+                             alt="{{featured_property.title}}"
                              class="img-fluid"
-                             onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"
                         />
                         <span class="featured">featured</span>
                         <span class="buy">buy</span>
@@ -269,18 +268,24 @@ Welcome To Home page
 
                     <div class="explore-details">
                         <div class="explore-item-title">
-                            <a href="house-in-kathmandu/1153.html">
-                                Budhanilkantha | Ganesh Chowk , Kathmandu, Budhanilkantha
+                            <a href="{% url 'frontend:property_detail' featured_property.slug %}">
+                               {{featured_property.title}}
                             </a>
                         </div>
                         <hr>
                         <div class="row item-details clearfix">
                             <ul class="item-detail-mid">
                                 <li><p><i class="fas fa-home"></i>8 rooms</p></li>
-                                <li><p><i class="fas fa-arrow-alt-circle-up"></i>SOUTH-WEST</p></li>
-                                <li><p><i class="fas fa-clock"></i>2081 B.S.</p></li>
-                                <li><p><i class="fas fa-ruler-combined"></i>4 Anna 1 Paisa</p></li>
-                                <li><p><i class="fas fa-car"></i>1 Car &amp; 3 Bikes</p></li>
+                                {% if featured_property.property_face_direction %}
+                                <li><p><i class="fas fa-arrow-alt-circle-up"></i>{{featured_property.property_face_direction}}</p></li>
+                                {% endif %}
+                                {% comment %} <li><p><i class="fas fa-clock"></i>2081 B.S.</p></li> {% endcomment %}
+                                {% if featured_property.land_area %}
+                                <li><p><i class="fas fa-ruler-combined"></i>{{featured_property.land_area}}</p></li>
+                                {% endif %}
+                                {% if featured_property.parking_area %}
+                                <li><p><i class="fas fa-car"></i>{{featured_property.parking_area}}</p></li>
+                                {% endif %}
                             </ul>
                         </div>
                         <hr class="mt-0">
@@ -290,499 +295,28 @@ Welcome To Home page
                                     <i class="fas fa-tags"></i>
                                     price
                                 </span>
-                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR 39,500,000/-</ins>
+                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR {{featured_property.new_price|default:"Not Available"|remove_decimal}}/-</ins>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
             
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item same-height mb-4">
-                    <div class="item-img sold-wrap">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/35/13/9b/old-town-of-panauti.jpg?w=700&h=-1&s=1"
-                             alt="pic4"
-                             class="img-fluid"
-                             onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"
-                        />
-                        <span class="featured">featured</span>
-                        <span class="buy">buy</span>
-                    </div>
-
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="house-in-kathmandu/1153.html">
-                                Budhanilkantha | Ganesh Chowk , Kathmandu, Budhanilkantha
-                            </a>
-                        </div>
-                        <hr>
-                        <div class="row item-details clearfix">
-                            <ul class="item-detail-mid">
-                                <li><p><i class="fas fa-home"></i>8 rooms</p></li>
-                                <li><p><i class="fas fa-arrow-alt-circle-up"></i>SOUTH-WEST</p></li>
-                                <li><p><i class="fas fa-clock"></i>2081 B.S.</p></li>
-                                <li><p><i class="fas fa-ruler-combined"></i>4 Anna 1 Paisa</p></li>
-                                <li><p><i class="fas fa-car"></i>1 Car &amp; 3 Bikes</p></li>
-                            </ul>
-                        </div>
-                        <hr class="mt-0">
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price">
-                                    <i class="fas fa-tags"></i>
-                                    price
-                                </span>
-                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR 39,500,000/-</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item same-height mb-4">
-                    <div class="item-img sold-wrap">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/35/13/9b/old-town-of-panauti.jpg?w=700&h=-1&s=1"
-                             alt="pic4"
-                             class="img-fluid"
-                             onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"
-                        />
-                        <span class="featured">featured</span>
-                        <span class="buy">buy</span>
-                    </div>
-
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="house-in-kathmandu/1153.html">
-                                Budhanilkantha | Ganesh Chowk , Kathmandu, Budhanilkantha
-                            </a>
-                        </div>
-                        <hr>
-                        <div class="row item-details clearfix">
-                            <ul class="item-detail-mid">
-                                <li><p><i class="fas fa-home"></i>8 rooms</p></li>
-                                <li><p><i class="fas fa-arrow-alt-circle-up"></i>SOUTH-WEST</p></li>
-                                <li><p><i class="fas fa-clock"></i>2081 B.S.</p></li>
-                                <li><p><i class="fas fa-ruler-combined"></i>4 Anna 1 Paisa</p></li>
-                                <li><p><i class="fas fa-car"></i>1 Car &amp; 3 Bikes</p></li>
-                            </ul>
-                        </div>
-                        <hr class="mt-0">
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price">
-                                    <i class="fas fa-tags"></i>
-                                    price
-                                </span>
-                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR 39,500,000/-</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item same-height mb-4">
-                    <div class="item-img sold-wrap">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/35/13/9b/old-town-of-panauti.jpg?w=700&h=-1&s=1"
-                             alt="pic4"
-                             class="img-fluid"
-                             onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"
-                        />
-                        <span class="featured">featured</span>
-                        <span class="buy">buy</span>
-                    </div>
-
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="house-in-kathmandu/1153.html">
-                                Budhanilkantha | Ganesh Chowk , Kathmandu, Budhanilkantha
-                            </a>
-                        </div>
-                        <hr>
-                        <div class="row item-details clearfix">
-                            <ul class="item-detail-mid">
-                                <li><p><i class="fas fa-home"></i>8 rooms</p></li>
-                                <li><p><i class="fas fa-arrow-alt-circle-up"></i>SOUTH-WEST</p></li>
-                                <li><p><i class="fas fa-clock"></i>2081 B.S.</p></li>
-                                <li><p><i class="fas fa-ruler-combined"></i>4 Anna 1 Paisa</p></li>
-                                <li><p><i class="fas fa-car"></i>1 Car &amp; 3 Bikes</p></li>
-                            </ul>
-                        </div>
-                        <hr class="mt-0">
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price">
-                                    <i class="fas fa-tags"></i>
-                                    price
-                                </span>
-                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR 39,500,000/-</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item same-height mb-4">
-                    <div class="item-img sold-wrap">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/35/13/9b/old-town-of-panauti.jpg?w=700&h=-1&s=1"
-                             alt="pic4"
-                             class="img-fluid"
-                             onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"
-                        />
-                        <span class="featured">featured</span>
-                        <span class="buy">buy</span>
-                    </div>
-
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="house-in-kathmandu/1153.html">
-                                Budhanilkantha | Ganesh Chowk , Kathmandu, Budhanilkantha
-                            </a>
-                        </div>
-                        <hr>
-                        <div class="row item-details clearfix">
-                            <ul class="item-detail-mid">
-                                <li><p><i class="fas fa-home"></i>8 rooms</p></li>
-                                <li><p><i class="fas fa-arrow-alt-circle-up"></i>SOUTH-WEST</p></li>
-                                <li><p><i class="fas fa-clock"></i>2081 B.S.</p></li>
-                                <li><p><i class="fas fa-ruler-combined"></i>4 Anna 1 Paisa</p></li>
-                                <li><p><i class="fas fa-car"></i>1 Car &amp; 3 Bikes</p></li>
-                            </ul>
-                        </div>
-                        <hr class="mt-0">
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price">
-                                    <i class="fas fa-tags"></i>
-                                    price
-                                </span>
-                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR 39,500,000/-</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item same-height mb-4">
-                    <div class="item-img sold-wrap">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/35/13/9b/old-town-of-panauti.jpg?w=700&h=-1&s=1"
-                             alt="pic4"
-                             class="img-fluid"
-                             onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"
-                        />
-                        <span class="featured">featured</span>
-                        <span class="buy">buy</span>
-                    </div>
-
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="house-in-kathmandu/1153.html">
-                                Budhanilkantha | Ganesh Chowk , Kathmandu, Budhanilkantha
-                            </a>
-                        </div>
-                        <hr>
-                        <div class="row item-details clearfix">
-                            <ul class="item-detail-mid">
-                                <li><p><i class="fas fa-home"></i>8 rooms</p></li>
-                                <li><p><i class="fas fa-arrow-alt-circle-up"></i>SOUTH-WEST</p></li>
-                                <li><p><i class="fas fa-clock"></i>2081 B.S.</p></li>
-                                <li><p><i class="fas fa-ruler-combined"></i>4 Anna 1 Paisa</p></li>
-                                <li><p><i class="fas fa-car"></i>1 Car &amp; 3 Bikes</p></li>
-                            </ul>
-                        </div>
-                        <hr class="mt-0">
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price">
-                                    <i class="fas fa-tags"></i>
-                                    price
-                                </span>
-                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR 39,500,000/-</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item same-height mb-4">
-                    <div class="item-img sold-wrap">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/35/13/9b/old-town-of-panauti.jpg?w=700&h=-1&s=1"
-                             alt="pic4"
-                             class="img-fluid"
-                             onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"
-                        />
-                        <span class="featured">featured</span>
-                        <span class="buy">buy</span>
-                    </div>
-
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="house-in-kathmandu/1153.html">
-                                Budhanilkantha | Ganesh Chowk , Kathmandu, Budhanilkantha
-                            </a>
-                        </div>
-                        <hr>
-                        <div class="row item-details clearfix">
-                            <ul class="item-detail-mid">
-                                <li><p><i class="fas fa-home"></i>8 rooms</p></li>
-                                <li><p><i class="fas fa-arrow-alt-circle-up"></i>SOUTH-WEST</p></li>
-                                <li><p><i class="fas fa-clock"></i>2081 B.S.</p></li>
-                                <li><p><i class="fas fa-ruler-combined"></i>4 Anna 1 Paisa</p></li>
-                                <li><p><i class="fas fa-car"></i>1 Car &amp; 3 Bikes</p></li>
-                            </ul>
-                        </div>
-                        <hr class="mt-0">
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price">
-                                    <i class="fas fa-tags"></i>
-                                    price
-                                </span>
-                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR 39,500,000/-</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item same-height mb-4">
-                    <div class="item-img sold-wrap">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/35/13/9b/old-town-of-panauti.jpg?w=700&h=-1&s=1"
-                             alt="pic4"
-                             class="img-fluid"
-                             onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"
-                        />
-                        <span class="featured">featured</span>
-                        <span class="buy">buy</span>
-                    </div>
-
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="house-in-kathmandu/1153.html">
-                                Budhanilkantha | Ganesh Chowk , Kathmandu, Budhanilkantha
-                            </a>
-                        </div>
-                        <hr>
-                        <div class="row item-details clearfix">
-                            <ul class="item-detail-mid">
-                                <li><p><i class="fas fa-home"></i>8 rooms</p></li>
-                                <li><p><i class="fas fa-arrow-alt-circle-up"></i>SOUTH-WEST</p></li>
-                                <li><p><i class="fas fa-clock"></i>2081 B.S.</p></li>
-                                <li><p><i class="fas fa-ruler-combined"></i>4 Anna 1 Paisa</p></li>
-                                <li><p><i class="fas fa-car"></i>1 Car &amp; 3 Bikes</p></li>
-                            </ul>
-                        </div>
-                        <hr class="mt-0">
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price">
-                                    <i class="fas fa-tags"></i>
-                                    price
-                                </span>
-                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR 39,500,000/-</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item same-height mb-4">
-                    <div class="item-img sold-wrap">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/35/13/9b/old-town-of-panauti.jpg?w=700&h=-1&s=1"
-                             alt="pic4"
-                             class="img-fluid"
-                             onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"
-                        />
-                        <span class="featured">featured</span>
-                        <span class="buy">buy</span>
-                    </div>
-
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="house-in-kathmandu/1153.html">
-                                Budhanilkantha | Ganesh Chowk , Kathmandu, Budhanilkantha
-                            </a>
-                        </div>
-                        <hr>
-                        <div class="row item-details clearfix">
-                            <ul class="item-detail-mid">
-                                <li><p><i class="fas fa-home"></i>8 rooms</p></li>
-                                <li><p><i class="fas fa-arrow-alt-circle-up"></i>SOUTH-WEST</p></li>
-                                <li><p><i class="fas fa-clock"></i>2081 B.S.</p></li>
-                                <li><p><i class="fas fa-ruler-combined"></i>4 Anna 1 Paisa</p></li>
-                                <li><p><i class="fas fa-car"></i>1 Car &amp; 3 Bikes</p></li>
-                            </ul>
-                        </div>
-                        <hr class="mt-0">
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price">
-                                    <i class="fas fa-tags"></i>
-                                    price
-                                </span>
-                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR 39,500,000/-</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item same-height mb-4">
-                    <div class="item-img sold-wrap">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/35/13/9b/old-town-of-panauti.jpg?w=700&h=-1&s=1"
-                             alt="pic4"
-                             class="img-fluid"
-                             onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"
-                        />
-                        <span class="featured">featured</span>
-                        <span class="buy">buy</span>
-                    </div>
-
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="house-in-kathmandu/1153.html">
-                                Budhanilkantha | Ganesh Chowk , Kathmandu, Budhanilkantha
-                            </a>
-                        </div>
-                        <hr>
-                        <div class="row item-details clearfix">
-                            <ul class="item-detail-mid">
-                                <li><p><i class="fas fa-home"></i>8 rooms</p></li>
-                                <li><p><i class="fas fa-arrow-alt-circle-up"></i>SOUTH-WEST</p></li>
-                                <li><p><i class="fas fa-clock"></i>2081 B.S.</p></li>
-                                <li><p><i class="fas fa-ruler-combined"></i>4 Anna 1 Paisa</p></li>
-                                <li><p><i class="fas fa-car"></i>1 Car &amp; 3 Bikes</p></li>
-                            </ul>
-                        </div>
-                        <hr class="mt-0">
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price">
-                                    <i class="fas fa-tags"></i>
-                                    price
-                                </span>
-                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR 39,500,000/-</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item same-height mb-4">
-                    <div class="item-img sold-wrap">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/35/13/9b/old-town-of-panauti.jpg?w=700&h=-1&s=1"
-                             alt="pic4"
-                             class="img-fluid"
-                             onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"
-                        />
-                        <span class="featured">featured</span>
-                        <span class="buy">buy</span>
-                    </div>
-
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="house-in-kathmandu/1153.html">
-                                Budhanilkantha | Ganesh Chowk , Kathmandu, Budhanilkantha
-                            </a>
-                        </div>
-                        <hr>
-                        <div class="row item-details clearfix">
-                            <ul class="item-detail-mid">
-                                <li><p><i class="fas fa-home"></i>8 rooms</p></li>
-                                <li><p><i class="fas fa-arrow-alt-circle-up"></i>SOUTH-WEST</p></li>
-                                <li><p><i class="fas fa-clock"></i>2081 B.S.</p></li>
-                                <li><p><i class="fas fa-ruler-combined"></i>4 Anna 1 Paisa</p></li>
-                                <li><p><i class="fas fa-car"></i>1 Car &amp; 3 Bikes</p></li>
-                            </ul>
-                        </div>
-                        <hr class="mt-0">
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price">
-                                    <i class="fas fa-tags"></i>
-                                    price
-                                </span>
-                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR 39,500,000/-</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-
-            
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item same-height mb-4">
-                    <div class="item-img sold-wrap">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/35/13/9b/old-town-of-panauti.jpg?w=700&h=-1&s=1"
-                             alt="pic4"
-                             class="img-fluid"
-                             onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"
-                        />
-                        <span class="featured">featured</span>
-                        <span class="buy">buy</span>
-                    </div>
-
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="house-in-kathmandu/1153.html">
-                                Budhanilkantha | Ganesh Chowk , Kathmandu, Budhanilkantha
-                            </a>
-                        </div>
-                        <hr>
-                        <div class="row item-details clearfix">
-                            <ul class="item-detail-mid">
-                                <li><p><i class="fas fa-home"></i>8 rooms</p></li>
-                                <li><p><i class="fas fa-arrow-alt-circle-up"></i>SOUTH-WEST</p></li>
-                                <li><p><i class="fas fa-clock"></i>2081 B.S.</p></li>
-                                <li><p><i class="fas fa-ruler-combined"></i>4 Anna 1 Paisa</p></li>
-                                <li><p><i class="fas fa-car"></i>1 Car &amp; 3 Bikes</p></li>
-                            </ul>
-                        </div>
-                        <hr class="mt-0">
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price">
-                                    <i class="fas fa-tags"></i>
-                                    price
-                                </span>
-                                <ins><span class="pr-1">:</span><span class="rs-price">Rs.</span>NPR 39,500,000/-</ins>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
-            
-
         </div>
         <span> <nav>
         <ul class="pagination">
             
-                            <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
-                    <span class="page-link" aria-hidden="true">&lsaquo;</span>
-                </li>
-            
-            
-                            
-                
-                
-                                                                                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
-                                                                                                <li class="page-item"><a class="page-link" href="index4658.html?page=2">2</a></li>
-                                                                                                <li class="page-item"><a class="page-link" href="index9ba9.html?page=3">3</a></li>
-                                                                        
-            
-                            <li class="page-item">
-                    <a class="page-link" href="index4658.html?page=2" rel="next" aria-label="Next &raquo;">&rsaquo;</a>
-                </li>
-                    </ul>
+            <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
+                <span class="page-link" aria-hidden="true">&lsaquo;</span>
+            </li>
+            <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+            <li class="page-item"><a class="page-link" href="index4658.html?page=2">2</a></li>
+            <li class="page-item"><a class="page-link" href="index9ba9.html?page=3">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="index4658.html?page=2" rel="next" aria-label="Next &raquo;">&rsaquo;</a>
+            </li>
+        </ul>
     </nav>
 </span>
     </div>
@@ -805,16 +339,17 @@ Welcome To Home page
             </div>
         </div>
         <div class="row">
-
+            {% for recent_property in recent_properties %}
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item rcent-item" onclick="location.href='https://gharsansarnepal.com/Commercial-space/1139'">
+                <div class="explore-item featured-item rcent-item" >
                     <div class="item-img sold-wrap">
-                        <img src="https://skillsewa.com/storage/1387/TTTT11.jpg" alt="pic1" class="img-fluid" onerror="this.onerror=null;this.src='./assets/images/default-image.svg'" />
+                        <img src="{% if recent_property.property_images.first.image %}{{ recent_property.property_images.first.image.url }} {% else %} {% static 'frontend/assets/images/default-image.svg' %} {% endif %}"
+                         alt="{{recent_property.title}}" class="img-fluid"  />
                         <span class="buy">rent</span>
                     </div>
                     <div class="explore-details">
                         <div class="explore-item-title">
-                            <a href="Commercial-space/1139.html">Maharajgunj House on Rent</a>
+                            <a href="{% url 'frontend:property_detail' recent_property.slug %}">{{recent_property.title}}</a>
                         </div>
                         <div class="item-details">
                             <div>
@@ -822,7 +357,7 @@ Welcome To Home page
                                     <i class="fas fa-tags blue-text"></i>
                                     price
                                 </span>
-                                <ins><span class="mr-1">:</span><span class="rs-price">Rs.</span>35500</ins>
+                                <ins><span class="mr-1">:</span><span class="rs-price">Rs.</span>{{recent_property.new_price|default:"Not Available"|remove_decimal}}/-</ins>
                             </div>
                         </div>
                         <hr>
@@ -830,83 +365,9 @@ Welcome To Home page
                     </div>
                 </div>
             </div>
+            {% endfor %}
 
-            <!-- Repeat for other items with the updated image src -->
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item rcent-item" onclick="location.href='https://gharsansarnepal.com/Land-in-nepal/1102'">
-                    <div class="item-img sold-wrap">
-                        <img src="https://skillsewa.com/storage/1387/TTTT11.jpg" alt="pic1" class="img-fluid" onerror="this.onerror=null;this.src='./assets/images/default-image.svg'" />
-                        <span class="buy">rent</span>
-                    </div>
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="Land-in-nepal/1102.html">Land for rent in NamoBuddha</a>
-                        </div>
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price mr-0">
-                                    <i class="fas fa-tags blue-text"></i>
-                                    price
-                                </span>
-                                <ins><span class="mr-1">:</span><span class="rs-price">Rs.</span>1000 per aana</ins>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="item-details clearfix"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item rcent-item" onclick="location.href='https://gharsansarnepal.com/Land-in-nepal/1102'">
-                    <div class="item-img sold-wrap">
-                        <img src="https://skillsewa.com/storage/1387/TTTT11.jpg" alt="pic1" class="img-fluid" onerror="this.onerror=null;this.src='./assets/images/default-image.svg'" />
-                        <span class="buy">rent</span>
-                    </div>
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="Land-in-nepal/1102.html">Land for rent in NamoBuddha</a>
-                        </div>
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price mr-0">
-                                    <i class="fas fa-tags blue-text"></i>
-                                    price
-                                </span>
-                                <ins><span class="mr-1">:</span><span class="rs-price">Rs.</span>1000 per aana</ins>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="item-details clearfix"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="explore-item featured-item rcent-item" onclick="location.href='https://gharsansarnepal.com/Land-in-nepal/1102'">
-                    <div class="item-img sold-wrap">
-                        <img src="{% static 'frontend/assets/images/default-image.svg' %}" alt="pic1" class="img-fluid" onerror="this.onerror=null;this.src='./assets/images/default-image.svg'" />
-                        <span class="buy">rent</span>
-                    </div>
-                    <div class="explore-details">
-                        <div class="explore-item-title">
-                            <a href="Land-in-nepal/1102.html">Land for rent in NamoBuddha</a>
-                        </div>
-                        <div class="item-details">
-                            <div>
-                                <span class="item-price mr-0">
-                                    <i class="fas fa-tags blue-text"></i>
-                                    price
-                                </span>
-                                <ins><span class="mr-1">:</span><span class="rs-price">Rs.</span>1000 per aana</ins>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="item-details clearfix"></div>
-                    </div>
-                </div>
-            </div>
-            
+           
 
             <!-- Continue replacing other src attributes similarly -->
 
@@ -996,86 +457,38 @@ Welcome To Home page
     </div>
 </section>
 
-<section id="cities" class="cities-section section-padding">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h4>Properties by cities</h4>
+<section class="agent-section">
+    <div class="container">
+        <h2>HERE IS OUR AGENTS</h2>
+        <p>Haven the best theme for elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et lorna aliquatd minimam, quis nostrud exercitation.</p>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="agent-card">
+                    <img src="https://via.placeholder.com/120" alt="Agent 1">
+                    <h5>Stephen De Smith</h5>
+                    <span>Real Estate Agent</span>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="big-city" onclick="location.href=https://gharsansarnepal.com/gharsansar/nepal/kathmandu/property">
-                    <img src="https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg"
-                         alt="pic13"
-                         class="img-fluid"
-                         onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"/>
-                    <div class="city-overlay">
-                        <div class="city-content">
-                            <a href="gharsansar/nepal/kathmandu/property.html">kathmandu</a>
-                            <span>609 properties</span>
-                        </div>
-                    </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="agent-card">
+                    <img src="https://via.placeholder.com/120" alt="Agent 2">
+                    <h5>Stephen De Smith</h5>
+                    <span>Real Estate Agent</span>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="big-city" onclick="location.href=https://gharsansarnepal.com/gharsansar/nepal/lalitpur/property">
-                    <img src="https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg"
-                         alt="pic14"
-                         class="img-fluid"
-                         onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"/>
-                    <div class="city-overlay">
-                        <div class="city-content">
-                            <a href="gharsansar/nepal/lalitpur/property.html">Lalitpur</a>
-                            <span>92 properties</span>
-                        </div>
-                    </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="agent-card">
+                    <img src="https://via.placeholder.com/120" alt="Agent 3">
+                    <h5>Stephen De Smith</h5>
+                    <span>Real Estate Agent</span>
                 </div>
             </div>
-        </div>
-        <div class="row bottom-cities">
-            <div class="col-lg-4 col-md-6">
-                <div class="big-city small-city" onclick="location.href='gharsansar/nepal/bhaktapur/property.html'">
-                    <img src="https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg"
-                         alt="pic15"
-                         class="img-fluid"
-                         onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"/>
-                    <div class="city-overlay first-city">
-                        <div class="city-content">
-                            <a href="gharsansar/nepal/bhaktapur/property.html">Bhaktapur</a>
-                            <span>6 properties</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="big-city small-city" onclick="location.href='gharsansar/nepal/pokhara/property.html'">
-                    <img src="https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg"
-                         alt="pic16"
-                         class="img-fluid"
-                         onerror="this.onerror=null;this.src='./assets/images/default-image.svg'"/>
-                    <div class="city-overlay">
-                        <div class="city-content">
-                            <a href="gharsansar/nepal/pokhara/property.html">pokhara</a>
-                            <span>3 properties</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="big-city small-city" onclick="location.href='gharsansar/nepal/biratnagar/property.html'">
-                    <img src="https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg"
-                         alt="pic9"
-                         class="img-fluid"
-                         onerror="this.onerror=null;this.src='assets/images/default-image.svg'"/>
-                    <div class="city-overlay last-city">
-                        <div class="city-content">
-                            <a href="gharsansar/nepal/biratnagar/property.html">biratnagar</a>
-                            <span>10 properties</span>
-                        </div>
-                    </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="agent-card">
+                    <img src="https://via.placeholder.com/120" alt="Agent 4">
+                    <h5>Stephen De Smith</h5>
+                    <span>Real Estate Agent</span>
                 </div>
             </div>
         </div>
@@ -1083,55 +496,6 @@ Welcome To Home page
 </section>
 
 
-<section class="section-new-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 text-center">
-                <div class="article-new">
-                    <div class="article-new1">
-                        <h2><b>Leading Real Estate in Nepal | Buy, Sell, Rent Property in Nepal</b></h2>
-                        <p>
-                            <a href = "/">Ghar Sansar</a> is a leading real estate and
-                            rental marketplace established to help customers with real estate services. We offer an
-                            online marketplace to buy or rent a house, apartment and land in Nepal. Not only that, our
-                            company allows you to gain knowledge about the latest prices of land, houses and apartment.
-                            Our professional staffs attempt to provide quality services at the best price.
-                        </p>
-                        <p class="moretext">
-                            Ghar-Sansar is always here to explore client satisfaction through hassle-free services in
-                            Nepal. Contact us if you are looking to buy property in Nepal or a land and house in
-                            Kathmandu. Our primary goal is to gain customers' trust through consistent, reliable and
-                            detailed information on home values and rental property. The <b>real estate in Nepal </b>is
-                            booming in the major cities of our country like Kathmandu, Pokhara, or Biratnagar. It is
-                            estimated that the business will continue to bring huge profits to investors in the coming
-                            days. Land, house, and apartments are the perfect options if you are looking to invest in
-                            Nepal. Land is a natural resource that has become a lucrative commodity in urban Nepal.
-                            These days many people have turned to real estate dealing to make money in Nepal.
-                            It is not that easy to finance as an investor in the real estate business. Real estate
-                            investors often struggle while lending money. Demand for real estate is increasing because
-                            the value of land and houses is appreciating with every passing day. Therefore, <b>Real
-                                Estate in Nepal</b> is profitable with many players involved in it. The ratio of loan
-                            defaulters is high in the <b>real estate in Nepal</b> which makes it more difficult for
-                            genuine players to set their standard. According to the recent real estate data in Nepal,
-                            the national demand for houses and apartments is about 140,000. However, Nepal is only able
-                            to construct 25,000 units. This shows that there is more than enough potentials in the
-                            Nepalese real estate markets.
-                            These days’ real estate agents have been working in the best interest of both the client
-                            (buyer and seller). Real Estate Agent is one of the highest-earning jobs in Nepal. Real
-                            Estate agents are the ones who help clients with all the processes of buying and selling
-                            land. Real Estate agents make money through commissions offered by both parties.
-                            The <b>real estate in Nepal</b> has become more expensive due to a higher rate of inflation.
-                            Things have become more expensive these days due to a decrease in money value. Hence, if you
-                            are willing to get rich within a short time duration, it is better to invest in real estate
-                            with the right mindset.
-                        </p>
-                    </div>
-                    <a class="moreless-button">Read More</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <section id="brand" class="brand-section section-padding odd-section">
     <div class="container-fluid">
@@ -1142,31 +506,26 @@ Welcome To Home page
                 </div>
             </div>
         </div>
-        <section class="customer-logos slider">
-            <div class="slide">
-                <img src="https://www.jadanconstructiongroup.com/uploads/blog/fI.jpg1.jpg"
-                     onerror="this.onerror=null;this.src='assets/images/default-image.svg'" />
-            </div>
-            <div class="slide">
-                <img src="https://www.jadanconstructiongroup.com/uploads/blog/fI.jpg1.jpg"
-                     onerror="this.onerror=null;this.src='assets/images/default-image.svg'" />
-            </div>
-            <div class="slide">
-                <img src="https://www.jadanconstructiongroup.com/uploads/blog/fI.jpg1.jpg"
-                     onerror="this.onerror=null;this.src='assets/images/default-image.svg'" />
-            </div>
-            <div class="slide">
-                <img src="https://www.jadanconstructiongroup.com/uploads/blog/fI.jpg1.jpg"
-                     onerror="this.onerror=null;this.src='assets/images/default-image.svg'" />
-            </div>
-            <div class="slide">
-                <img src="https://www.jadanconstructiongroup.com/uploads/blog/fI.jpg1.jpg"
-                     onerror="this.onerror=null;this.src='assets/images/default-image.svg'" />
-            </div>
-            <div class="slide">
-                <img src="https://www.jadanconstructiongroup.com/uploads/blog/fI.jpg1.jpg"
-                     onerror="this.onerror=null;this.src='assets/images/default-image.svg'" />
-            </div>
+        <section class="customer-logos slider slick-initialized slick-slider">
+
+            <div aria-live="polite" class="slick-list draggable"><div class="slick-track" role="listbox" style="opacity: 1; width: 1836px; transform: translate3d(0px, 0px, 0px);"><div class="slide slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00" style="width: 266px;">
+                <img src="https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg'">
+            </div><div class="slide slick-slide slick-active" data-slick-index="1" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide01" style="width: 266px;">
+                <img src="https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg'">
+            </div><div class="slide slick-slide slick-active" data-slick-index="2" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide02" style="width: 266px;">
+                <img src="https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg'">
+            </div><div class="slide slick-slide slick-active" data-slick-index="3" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide03" style="width: 266px;">
+                <img src="https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg'">
+            </div><div class="slide slick-slide slick-active" data-slick-index="4" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide04" style="width: 266px;">
+                <img src="https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg'">
+            </div><div class="slide slick-slide slick-active" data-slick-index="5" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide05" style="width: 266px;">
+                <img src="https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg" onerror="this.onerror=null;this.src='https://images.squarespace-cdn.com/content/v1/55d729cfe4b00ab3960e7989/1443710118255-RX9W4BOH86CHF1WEUPVA/image-asset.jpeg'">
+            </div></div></div>
+            
+            
+            
+            
+            
         </section>
     </div>
 </section>

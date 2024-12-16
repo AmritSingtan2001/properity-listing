@@ -16,6 +16,8 @@ class Index(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['available_properties'] = self.get_queryset()
         context['highlighted_properties'] = self.get_queryset().filter(is_highlight=True)
+        context['featured_properties'] = self.get_queryset().filter(is_featured=True)
+        context['recent_properties'] = self.get_queryset()[:8]
         return context
 
 
